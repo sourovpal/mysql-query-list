@@ -24,6 +24,14 @@ ALTER TABLE `table_name` ADD FULLTEXT KEY `name_email` (`name`,`email`);
 
 SELECT * FROM table_name WHERE MATCH(name_email) AGAINST('search text' IN BOOLEAN MODE);
 
+SELECT * 
+FROM users 
+WHERE id < (
+    SELECT MAX(id) 
+    FROM users
+);
+
+SELECT * FROM ( SELECT * FROM timelines ORDER BY id DESC LIMIT 2 ) AS last_50 ORDER BY id ASC;
 
 
 
